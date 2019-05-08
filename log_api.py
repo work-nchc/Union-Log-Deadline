@@ -1,11 +1,12 @@
 from Deadline.Scripting import RepositoryUtils, JobUtils
 from datetime import datetime
 def __main__():
+    loglist = []
     for job in (tuple(RepositoryUtils.GetJobs(True)) +
                 tuple(RepositoryUtils.GetDeletedJobs())):
         stats = JobUtils.CalculateJobStatistics(
             job, RepositoryUtils.GetJobTasks(job, True))
-        print('\t'.join((
+        loglist.append('\t'.join((
             job.JobId,
             job.JobUserName,
             datetime(
@@ -18,5 +19,7 @@ def __main__():
                 job.JobCompletedDateTime.Ticks % 10 ** 7 // 10,
             ).isoformat(),
             str(stats.TotalTaskRenderTime.Ticks),
-        )))
+        )) + '\n')
+    with open('log_api.csv', 'w') as output:
+        output.writelines(loglist)
     return None
