@@ -1,6 +1,6 @@
 # Union-Log-Deadline
 
-Dependencies: PyMongo
+Dependency: PyMongo
 
 ---
 log from Deadline API:
