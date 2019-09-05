@@ -5,9 +5,9 @@ db = client.deadline10db
 collection = db.JobStatistics
 
 with open('log_db.csv', 'w') as output:
-    [output.write('\t'.join((
+    {output.write('\t'.join((
         job['_id'],
         job['User'],
         (job['DateComp'] + timedelta(hours=8)).isoformat(),
         job['TtlRender'],
-    )) + '\n') for job in collection.find()]
+    )) + '\n') for job in collection.find()}

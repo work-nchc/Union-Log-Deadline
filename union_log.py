@@ -99,9 +99,9 @@ for id_job in all_id:
         log_filtered.append((max(date_db, date_api), username, ticks))
 
 with open(logname_filtered, 'w') as output_filtered:
-    [output_filtered.write(
+    {output_filtered.write(
         job[0].isoformat() + '\t' + job[1] + '\t' + str(job[2]) + '\n'
-    ) for job in sorted(log_filtered)]
+    ) for job in sorted(log_filtered)}
 
 with open(logname_err, 'w') as output_err:
     output_err.writelines(miss_api)
