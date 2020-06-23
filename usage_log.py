@@ -27,9 +27,11 @@ def col_key(k):
 
 table = [[''] * len(usage) for username in accounts]
 for key in usage:
-    for name in usage[key]:
-        table[accounts.index(name)][col_key(key)] = str(round(
-            usage[key][name] / (36 * 10 ** 9), 2))
+    col = col_key(key)
+    if col >= 0:
+        for name in usage[key]:
+            table[accounts.index(name)][col] = str(round(
+                usage[key][name] / (36 * 10 ** 9), 2))
 
 with open(filename_usage, 'w') as output_usage:
     output_usage.write('\n'.join(map('\t'.join, table)))
